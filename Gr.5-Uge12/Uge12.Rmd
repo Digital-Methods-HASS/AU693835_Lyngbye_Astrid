@@ -1,0 +1,18 @@
+library(tidyverse)
+Western_Europe <- read_csv("data/homicide-rates-across-western-europe.csv")
+
+head(Western_Europe)
+Western_Europe
+names(Western_Europe)
+names(Western_Europe)[4] <- "homicide_per_100k"
+names(Western_Europe)
+
+#ggplot
+names(Western_Europe)[1] <- "country"
+Western_Europe %>% 
+  ggplot(aes(x=Year,y=homicide_per_100k,color=country))+
+  geom_smooth()+
+  facet_wrap("country",nrow = 3,ncol = 2)+
+  labs(title = "Tendens i drab")+
+  theme(legend.position = "bottom")
+
